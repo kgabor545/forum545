@@ -5,6 +5,8 @@
         array_push($topics, $_POST['topic']);
         $JsonString = json_encode($topics);
         $szoveg = $JsonString;
+        $fileName = 'data.json';
+        file_put_contents($fileName,$JsonString);
     }
 
 ?>
