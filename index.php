@@ -22,6 +22,13 @@
 </head>
 <body>
     <h1>Témák:</h1>
+    <ul>
+    <?php
+        foreach ($topics as $key => $value) {
+            echo '<li>' . ($key + 1) . '. ' . $value;
+        }
+    ?>
+    </ul>
     <form method="POST">
         <input type="text" name="topic">
         <input type="submit" value="Add">
