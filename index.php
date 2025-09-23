@@ -6,10 +6,17 @@
     } else {
         $topics = [];
     }
-    if (isset($_POST['topic'])) {
-        array_push($topics, $_POST['topic']);
-        $JsonString = json_encode($topics);
-        file_put_contents($fileName,$JsonString);
+
+    
+
+    if (isset($_POST['action'])) {
+
+        if ($_POST['action'] == 'add') {
+            array_push($topics, $_POST['topic']);
+            $JsonString = json_encode($topics);
+            file_put_contents($fileName,$JsonString);
+        }
+    
     }
 
 ?>
@@ -25,11 +32,18 @@
     <ol>
     <?php
         foreach ($topics as $value) {
-            echo '<li>' . $value;
+            echo '<li>' . $value . '
+            <form method="post">
+            <input type="hidden" name="topic" value="' . $value . '">
+            <input type="hidden" name="action" value="delete">
+            <input type="submit" value="Törlés">
+            </form>';
+
         }
     ?>
     </ol>
     <form method="POST">
+        <input type="hidden" name="action" value="add">
         <input type="text" name="topic">
         <input type="submit" value="Add">
     </form>
