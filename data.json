@@ -1,1 +1,22 @@
-["asfasfa","kutya","uj2","asd22","\u00faj t\u00e9ma","asfasfa","asfasfa","asfasfa","kutya","\u00faj t\u00e9ma","cica"]
+[
+    {
+        "id": 1,
+        "name": "kutya"
+    },
+    {
+        "id": 2,
+        "name": "cica"
+    },
+    {
+        "id": 3,
+        "name": "citrom"
+    },
+    {
+        "id": 1235,
+        "name": "wakka"
+    },
+    {
+        "id": 1236,
+        "name": "kuka"
+    }
+]
