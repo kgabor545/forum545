@@ -8,24 +8,28 @@
     }
 
     if (isset($_POST['action'])) {
-        $lastId = 0;
-        if (!empty($topics)) {
-            $lastItem = end($topics);
-            $lastId = $lastItem->id;
-        }
-        $newId = $lastId + 1;
+        
+        # Új téma hozzáadása
         if ($_POST['action'] == 'add') {
+            #region Az utolsó téma ID meghatározása
+            $lastId = 0;
+            if (!empty($topics)) {
+                $lastItem = end($topics);
+                $lastId = $lastItem->id;
+            } 
+            #endregion
             array_push($topics,
             (object)[
-              "id" => $newId,
+              "id" => $lastId + 1,
               "name" => $_POST['topic']
             ]
             );
             $JsonString = json_encode($topics,JSON_PRETTY_PRINT);
             file_put_contents($fileName,$JsonString);
         }
+        # Téma törlése
         elseif (($_POST['action'] == 'delete')) {
-
+            echo "OK";
         }
     
     }
