@@ -8,7 +8,7 @@
     }
 
     if (isset($_POST['action'])) {
-        
+
         # Új téma hozzáadása
         if ($_POST['action'] == 'add') {
             #region Az utolsó téma ID meghatározása
@@ -29,7 +29,13 @@
         }
         # Téma törlése
         elseif (($_POST['action'] == 'delete')) {
-            echo "OK";
+            $id = $_POST['id'];
+            foreach ($topics as $key => $topic) {
+                if ($topic->id == $id) break;
+            }
+            array_splice($topics,$key,1);
+            $JsonString = json_encode($topics,JSON_PRETTY_PRINT);
+            file_put_contents($fileName,$JsonString);
         }
     
     }
