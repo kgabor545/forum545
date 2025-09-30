@@ -7,6 +7,10 @@
         $topics = [];
     }
 
+    if (isset($_GET['valami'])) {
+
+    }
+
     if (isset($_POST['action'])) {
 
         # Új téma hozzáadása
@@ -49,11 +53,13 @@
     <title>Forum</title>
 </head>
 <body>
-    <h1>Témák:</h1>
-    <ol>
     <?php
+    if (!isset($_GET['topic'])) {
+echo ' <h1>Témák:</h1>
+        <ol>';
+    
             foreach ($topics as $value) {
-            echo '<li>' . $value->name . '
+            echo '<li><a href="index.php?topic=' . $value->id . '">'. $value->name . '</a>
             <form method="post">
             <input type="hidden" name="id" value="' . $value->id . '">
             <input type="hidden" name="action" value="delete">
@@ -61,12 +67,30 @@
             </form>';
 
         }
+        echo '</ol>';
+    } else {
+        echo '<h1>na itt kell megírni az új részt. topic ID: ' . $_GET['topic'].'</h1>';
+        echo '<a href=index.php>Vissza a témákhoz</a>';
+    }
     ?>
-    </ol>
+    
     <form method="POST">
         <input type="hidden" name="action" value="add">
         <input type="text" name="topic">
         <input type="submit" value="Add">
+    </form>
+
+    <h1>GET Form</h1>
+    <?php
+
+if (isset($_GET['valami'])) {
+  echo "Az utolsó kapott érték: ".$_GET['valami'];        
+}
+
+?>
+    <form method="GET">
+        <input type="text" name="valami" id="">
+        <input type="submit" value="Küld">
     </form>
 </body>
 </html>
